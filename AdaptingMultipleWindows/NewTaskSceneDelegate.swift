@@ -25,17 +25,18 @@ class NewTaskSceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         
         #if targetEnvironment(macCatalyst)
-        configureMacWindowsSize(scene)
+        configureMacWindowSize()
         #endif
     }
     
     #if targetEnvironment(macCatalyst)
-    private func configureMacWindowsSize(_ scene: UIScene) {
-        guard let windowScene = scene as? UIWindowScene else { return }
+    
+    private func configureMacWindowSize() {
+        guard let window = window else { return }
         
         let fixedSize = CGSize(width: 400, height: 250)
-        windowScene.sizeRestrictions?.minimumSize = fixedSize
-        windowScene.sizeRestrictions?.maximumSize = fixedSize
+        window.windowScene?.sizeRestrictions?.minimumSize = fixedSize
+        window.windowScene?.sizeRestrictions?.maximumSize = fixedSize
     }
     #endif
 }
